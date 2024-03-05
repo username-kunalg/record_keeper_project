@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <!-- Link Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: nunito, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+            font-size: 14px; /* Set default font size */
+            color: #333; /* Set default text color */
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h3, .user-info p, .auth-links a {
+            font-size: 1em; /* Set all text sizes to 1em (16px) */
+            font-weight: 300
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .user-info {
+            margin-bottom: 20px;
+        }
+        .user-info p {
+            margin: 0;
+            font-family: nunito, sans-serif;
+        }
+        .auth-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 8px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .auth-links a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <p>Hello, {{ request.user.username }}</p>
+            {% endif %}
+        </div>
+        <h3>Thank you for using Record Keeper</h3>
+        <div class="auth-links">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i> Logout <!-- Font Awesome logout icon -->
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
