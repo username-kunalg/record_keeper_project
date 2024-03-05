@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9+#bfz)_2t@j6)i)6zawk@2wmuce07!nx=f#%*qfclkcq#!5c$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['164.92.83.19']
 
 
 # Application definition
@@ -74,13 +74,22 @@ WSGI_APPLICATION = 'record_keeper_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':  'record_keeper',
+        'USER' : 'record_user',
+        'PASSWORD' : 'record@007%%#$$#@!%^&&*',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
