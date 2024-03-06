@@ -15,8 +15,8 @@
         left: 20px;
         cursor: pointer;
     }
-    #mic:hover svg path {
-        fill: red; /* Change to red color on hover */
+    #mic.active svg path {
+        fill: red; /* Change to red color when active */
     }
 </style>
 
@@ -47,16 +47,21 @@
                 console.log("speech recognition API not available");
                 return;
             }
-            try {
-                $(mic).removeClass("fa-microphone-slash").addClass("fa-microphone blink");
-                recognition.start();
-            } catch (error) {
-                $(mic).removeClass("fa-microphone blink").addClass("fa-microphone-slash");
-                recognition.stop(); //already started - toggle
+            if (!mic.classList.contains('active')) {
+                mic.classList.add('active');
+                try {
+                    recognition.start();
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+                mic.classList.remove('active');
+                recognition.stop();
             }
         });
     });
 </script>
+
 
 <div class="main-panel">
     <div class="content">
