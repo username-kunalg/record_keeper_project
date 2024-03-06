@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'record_keeper_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':  'record_keeper',
+        'NAME':  'record_keepers',
         'USER' : 'record_user',
         'PASSWORD' : 'record@007%%#$$#@!%^&&*',
         'HOST' : 'localhost',
