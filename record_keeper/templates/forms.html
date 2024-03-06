@@ -86,7 +86,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="activity">Activity</label>
-                                    <input type="text" class="form-control" id="activity" name="activity" placeholder="Enter Activity" value="{{ form.instance.activity }}">
+                                    <select class="form-control" id="activity" name="activity">
+                                        {% for activity in activities %}
+                                            <option value="{{ activity.id }}" {% if activity.id == record.activity_id %}selected{% endif %}>{{ activity.name }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="hours">Hours</label>

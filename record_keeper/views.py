@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .models import Record
+from .models import *
 from .forms import RecordForm
 from django.views.generic import TemplateView, FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -21,12 +21,17 @@ class RecordCreateView(View):
     def get(self, request):
         """Handles GET request to display the record creation form."""
         form = RecordForm()
-        return render(request, 'forms.html', {'form': form})
+        activities = Activity.objects.all()  # Get all activities
+        return render(request, 'forms.html', {'form': form, 'activities': activities})
 
     def post(self, request):
         """Handles POST request to create a new record."""
         form = RecordForm(request.POST)
         if form.is_valid():
+            # Since 'activity' is a ForeignKey field, you need to extract the activity ID from the submitted form data
+            activity_id = request.POST.get('activity')
+            activity = Activity.objects.get(pk=activity_id)  # Retrieve the selected activity
+            form.instance.activity = activity  # Assign the selected activity to the record instance
             form.save()
             return redirect('record_list')
         return render(request, 'forms.html', {'form': form})
@@ -37,14 +42,23 @@ class RecordUpdateView(View):
     def get(self, request, pk):
         """Handles GET request to display the record update form."""
         record = get_object_or_404(Record, pk=pk)
+
+        # Format the date in "yyyy-MM-dd" format
+        record.date = record.date.strftime('%Y-%m-%d')
+
         form = RecordForm(instance=record)
-        return render(request, 'forms.html', {'form': form})
+        activities = Activity.objects.all()  # Get all activities
+        return render(request, 'forms.html', {'form': form, 'activities': activities})
 
     def post(self, request, pk):
         """Handles POST request to update an existing record."""
         record = get_object_or_404(Record, pk=pk)
         form = RecordForm(request.POST, instance=record)
         if form.is_valid():
+            # Extract the activity ID from the submitted form data
+            activity_id = request.POST.get('activity')
+            activity = Activity.objects.get(pk=activity_id)  # Retrieve the selected activity
+            form.instance.activity = activity  # Assign the selected activity to the record instance
             form.save()
             return redirect('record_list')
         return render(request, 'forms.html', {'form': form})
