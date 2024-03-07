@@ -12,98 +12,57 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="{% static 'assets/css/ready.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="main-header">
+<div class="wrapper">
+    <header class="main-header">
+        <div class="logo-header">
+            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <nav class="navbar navbar-header navbar-expand-lg"></nav>
+    </header>
+
+    <aside class="sidebar">
+        <div class="scrollbar-inner sidebar-wrapper">
             <div class="logo-header">
-
-                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
-            </div>
-            <nav class="navbar navbar-header navbar-expand-lg">
-                <div class="container-fluid">
-
-                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-
-                        <li class="nav-item dropdown hidden-caret">
-                            <a class="dropdown-toggle profile-pic d-block d-lg-none" data-toggle="dropdown" href="#"
-                                aria-expanded="false">
-                                <img src="{% static 'assets/img/profile.jpg' %}" alt="user-img" width="36"
-                                    class="img-circle">
-                                <span>{{ request.user.username }}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <div class="user-box">
-                                        <div class="u-img"><img src="{% static 'assets/img/profile.jpg' %}"
-                                                alt="user">
-                                        </div>
-                                        <div class="u-text">
-                                            <h4>{{ request.user.username }}</h4>
-                                            <p class="text-muted">{{ request.user.email }}</p>
-
-                                        </div>
-                                    </div>
-                                </li>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{% url 'index' %}"><i class="fa fa-power-off"></i>
-                                    Logout</a>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown d-none d-lg-block">
-                            <!-- Show user profile section only on larger screens -->
-                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
-                                aria-expanded="false">
-                                <img src="{% static 'assets/img/profile.jpg' %}" alt="user-img" width="36"
-                                    class="img-circle">
-                                <span>{{ request.user.username }}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <div class="user-box">
-                                        <div class="u-img"><img src="{% static 'assets/img/profile.jpg' %}"
-                                                alt="user">
-                                        </div>
-                                        <div class="u-text">
-                                            <h4>{{ request.user.username }}</h4>
-                                            <p class="text-muted">{{ request.user.email }}</p>
-
-                                        </div>
-                                    </div>
-                                </li>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{% url 'index' %}"><i class="fa fa-power-off"></i>
-                                    Logout</a>
-                            </ul>
-                        </li>
-
-                    </ul>
+                <div class="user-box mx-1">
+                    <div class="u-img">
+                        <img class="rounded-circle" src="{% static 'assets/img/profile.jpg' %}" alt="Profile picture of {{ request.user.username }}">
+                    </div>
+                    <div class="u-text">
+                        <h4 style="color: #575962;">{{ request.user.username }}</h4>
+                        <p style="color: #575962;">{{ request.user.email }}</p>
+                    </div>
                 </div>
-            </nav>
-        </div>
-        <div class="sidebar">
-            <div class="scrollbar-inner sidebar-wrapper">
-
-                <ul class="nav">
-                    <li class="nav-item active">
-                        <a href="/records/">
-                            <i class="la la-th"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                </ul>
             </div>
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="/records/">
+                        <i class="la la-th"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt" style="margin-right: 5px;"></i> <!-- Font Awesome logout icon with inline color -->
+                        Logout
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="container-fluid">
-            {% block content %}
-            {% endblock %}
-        </div>
+    </aside>
+
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
     </div>
+</div>
+
 
     <script src="{% static 'assets/js/core/jquery.3.2.1.min.js' %}"></script>
     <script src="{% static 'assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
