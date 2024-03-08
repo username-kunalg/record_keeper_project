@@ -93,7 +93,9 @@
     color: #555;
     font-size: 15px;
     font-weight: $font-weight-normal;
-    text-decoration: none;
+    text-decoration: nonedisplay: flex;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #ededed;;
     &:hover {
       display: flex;
       align-items: center;
@@ -118,7 +120,8 @@
 
 .user-box {
   display: flex;
-  padding: .25rem 1rem;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #ededed;
   .u-img {
     width: 80px;
     img {
