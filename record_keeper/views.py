@@ -19,6 +19,8 @@ class RecordCreateView(View):
     """View for creating a new record."""
 
     def get(self, request):
+
+
         """Handles GET request to display the record creation form."""
         form = RecordForm()
         activities = Activity.objects.all()  # Get all activities
