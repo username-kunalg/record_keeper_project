@@ -21,7 +21,7 @@ class RecordCreateView(View):
     def get(self, request):
 
 
-        """Handles GET request to display the record creation form."""
+        """Handles GET request to display the record creation form. kunal"""
         form = RecordForm()
         activities = Activity.objects.all()  # Get all activities
         return render(request, 'forms.html', {'form': form, 'activities': activities})
