@@ -26,6 +26,8 @@ class RecordCreateView(View):
 
     def post(self, request):
         """Handles POST request to create a new record."""
+
+
         form = RecordForm(request.POST)
         if form.is_valid():
             # Since 'activity' is a ForeignKey field, you need to extract the activity ID from the submitted form data
