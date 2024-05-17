@@ -19,16 +19,14 @@ class RecordCreateView(View):
     """View for creating a new record."""
 
     def get(self, request):
+        """Handles GET request to display the record creation form."""
 
-
-        """Handles GET request to display the record creation form. kunal"""
         form = RecordForm()
         activities = Activity.objects.all()  # Get all activities
         return render(request, 'forms.html', {'form': form, 'activities': activities})
 
     def post(self, request):
         """Handles POST request to create a new record."""
-
 
         form = RecordForm(request.POST)
         if form.is_valid():
@@ -45,6 +43,7 @@ class RecordUpdateView(View):
 
     def get(self, request, pk):
         """Handles GET request to display the record update form."""
+
         record = get_object_or_404(Record, pk=pk)
 
         # Format the date in "yyyy-MM-dd" format
@@ -56,6 +55,7 @@ class RecordUpdateView(View):
 
     def post(self, request, pk):
         """Handles POST request to update an existing record."""
+
         record = get_object_or_404(Record, pk=pk)
         form = RecordForm(request.POST, instance=record)
         if form.is_valid():
