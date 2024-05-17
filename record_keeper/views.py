@@ -59,7 +59,7 @@ class RecordUpdateView(View):
         record = get_object_or_404(Record, pk=pk)
         form = RecordForm(request.POST, instance=record)
         if form.is_valid():
-            # Extract the activity ID from the submitted form data
+
             activity_id = request.POST.get('activity')
             activity = Activity.objects.get(pk=activity_id)  # Retrieve the selected activity
             form.instance.activity = activity  # Assign the selected activity to the record instance
